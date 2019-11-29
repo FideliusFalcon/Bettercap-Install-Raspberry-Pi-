@@ -13,3 +13,22 @@ $export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 Write these paths into the profile at the bottom of the document:  
 $sudo nano ~/.profile  
 
+## Install bettercap dependencies
+$sudo apt-get install build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev
+
+## Install bettercap
+Download bettercap  
+$go get github.com/bettercap/bettercap
+
+Install  
+$cd $GOPATH/src/github.com/bettercap/bettercap  
+$make build  
+$sudo make install  
+
+## Update caplets and install ui
+Start bettercap  
+$sudo bettercap  
+Update caplets  
+$caplets.update  
+Install UI  
+$ui.update   
