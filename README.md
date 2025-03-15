@@ -1,4 +1,10 @@
 
+Guide to install Bettercap on a Raspberry Pi with web-ui
+1. [Install golang](#install-golang)
+2. [Download and build bettercap](#download-and-build-bettercap)
+3. [Start bettercap](#start-bettercap)
+4. [Running the web-ui with better-ui](#running-the-web-ui)
+
 ## Install golang
 The golang version from APT is pretty old, instead find the newest version on the [Go download page](https://go.dev/dl/)
 If you're running 32 bit then use arch ARMv6 otherwise ARM64, copy the url, eg: `https://go.dev/dl/go1.24.1.linux-arm64.tar.gz`
@@ -45,7 +51,7 @@ sudo bettercap
 ```
 ### Running the web-ui
 Bettercap is already bundled with bettercap-ui, but the caplet `http-ui` doesn't work probably. Instead we create our own.
-Add the content of [better-ui.cap](FideliusFalcon/Bettercap-Install-Raspberry-Pi-/better-ui.cap) to `/usr/local/share/bettercap/caplets/better-ui.cap`
+Add the content of [better-ui.cap](better-ui.cap) to `/usr/local/share/bettercap/caplets/better-ui.cap`
 
 Start bettercap with the ui
 ```
