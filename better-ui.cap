@@ -1,0 +1,12 @@
+set api.rest.address 127.0.0.1
+set api.rest.port 8081
+
+set ui.address 127.0.0.1
+set ui.port 8080
+
+# Change this
+set api.rest.username user
+set api.rest.password pass
+
+api.rest on
+ui on

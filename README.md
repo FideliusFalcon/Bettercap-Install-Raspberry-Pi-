@@ -43,14 +43,12 @@ sudo make install
 ```
 sudo bettercap
 ```
-with web-ui
-```
-sudo bettercap -caplet http-ui
-```
-\* This will only listen on localhost (127.0.0.1). If you're accessing bettercap remotely, then check the section below about configuring bettercap
+### Running the web-ui
+Bettercap is already bundled with bettercap-ui, but the caplet `http-ui` doesn't work probably. Instead we create our own.
+Add the content of [better-ui.cap](FideliusFalcon/Bettercap-Install-Raspberry-Pi-/better-ui.cap) to `/usr/local/share/bettercap/caplets/better-ui.cap`
 
-## Configure bettercap
-The configuration is stored at
+Start bettercap with the ui
 ```
-/usr/local/share/bettercap/caplets/
+sudo bettercap -caplet better-ui
 ```
+\* This will only listen on localhost (127.0.0.1). If you're accessing bettercap remotely, remember to set the address
