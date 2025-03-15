@@ -1,41 +1,56 @@
-# Bettercap installation on Raspberry Pi
-Also works on other systems
-## Install Golang
-**Update the available the packages and install them**  
-`sudo apt-get update && sudo apt-get upgrade -y`  
 
-**Install golang (This will not install the newest version, but it suit our need)**  
-`sudo apt-get install golang`  
+## Install golang
+The golang version from APT is pretty old, instead find the newest version on the [Go download page](https://go.dev/dl/)
+If you're running 32 bit then use arch ARMv6 otherwise ARM64, copy the url, eg: `https://go.dev/dl/go1.24.1.linux-arm64.tar.gz`
 
-**Set path**  
+Download and extract go
 ```
-export GOPATH=$HOME/go  
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin  
+cd ~
+wget https://go.dev/dl/go1.24.1.linux-arm64.tar.gz && sudo tar -C /usr/local -xzf go1.24.1.linux-arm64.tar.gz
 ```
-
-**Write these paths into the profile at the bottom of the document**  
-`sudo nano ~/.profile`  
-
-## Install bettercap dependencies
-`sudo apt-get install build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev`
-
-## Install bettercap
-**Download bettercap**  
-`go get github.com/bettercap/bettercap`
-
-**Install bettercap**  
+Add the go binary path:
 ```
-cd $GOPATH/src/github.com/bettercap/bettercap  
-make build  
-sudo make install  
+nano ~/.profile
+```
+Insert following
+```
+PATH=$PATH:/usr/local/go/bin
+GOPATH=$HOME/go
+```
+Update your current shell with the configuration
+```
+source ~/.profile
+```
+Validate go is installed
+```
+go version
 ```
 
-## Update caplets and install ui
-**Start bettercap**  
-`sudo bettercap`  
-
-**Update caplets**  
+## Download and build bettercap
+Install bettercap dependencies
 ```
-caplets.update   
-ui.update   
+sudo apt update && sudo apt install git build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev
+```
+```
+cd ~ && git clone https://github.com/bettercap/bettercap.git && cd bettercap && make build
+```
+Install
+```
+sudo make install
+```
+
+## Start bettercap
+```
+sudo bettercap
+```
+with web-ui
+```
+sudo bettercap -caplet http-ui
+```
+\* This will only listen on localhost (127.0.0.1). If you're accessing bettercap remotely, then check the section below about configuring bettercap
+
+## Configure bettercap
+The configuration is stored at
+```
+/usr/local/share/bettercap/caplets/
 ```
